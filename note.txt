@@ -19,3 +19,16 @@
 hi = 'abc'
 hi2 = "abc"
 둘다 str
+
+## Black
+- code formatter, 코드 스타일을 맞춰준다.
+
+## git commit 하기 전에 (중요)
+- 자기가 뭘 커밋하는지 꼭, 커밋전에 한번 더 확인하기
+- 지우지 않은 print() 가 있는지 확인
+    - print는 IO를 수반하기 때문에, (터미널에 출력해야 되기 때문) 비싼 연산
+    - 의도하지 않은 print가 남아있지 않도록합시다.
+
+## poetry 종속성 관리
+- pooetry add를 실행할 때 '-b' 옵션을 주면, 종속성을 dev dependency 로 추가합니다.
+
