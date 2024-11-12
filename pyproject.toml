@@ -21,6 +21,7 @@ django-stubs = "^5.1.1"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+
 [tool.black]
 line-length = 120
 
@@ -29,8 +30,8 @@ profile = "black"
 
 [tool.mypy]
 plugins = ["mypy_django_plugin.main"]
-python_version = 3.13
-strict = true # 제일 중요하고, 제일 지키기 어려운 옵션, mypy를 아주 엄격하게 만든다.
+python_version = 3.12
+strict = true
 
 [[tool.mypy.overrides]]
 module = "*.migrations.*"
@@ -40,5 +41,5 @@ ignore_errors = true
 module = "manage"
 ignore_errors = true
 
-[[tool.django-stubs]]
+[tool.django-stubs]
 django_settings_module = "oz_django6.settings"
