@@ -32,3 +32,13 @@ hi2 = "abc"
 ## poetry 종속성 관리
 - pooetry add를 실행할 때 '-b' 옵션을 주면, 종속성을 dev dependency 로 추가합니다.
 
+- caret(^) requirements
+
+
+##  poetry.lock 파일
+- "정확히 어떤 버전을 설치해야 할지" 버전 정보가 lock 파일에 담겨있습니다.
+- 프로젝트 처음 클론받고, 'poetry'
+
+## lock 파일의 content hash
+- hash 를 쉽게 설명하면 -> 임의의 문자열을
+
