@@ -1,50 +1,168 @@
-# Django 라이브강의 덕배강사님
+# Django 특강 with 덕배 2024-11-12
 
-# 1일차
 
-## .으로 시작하는 파일
-- . 으로 이름이 시작하는 파일이나 디렉터리는 "숨겨진 파일" OR "숨겨진 디렉터리"
-- 숨겨진 것들은 그냥 'ls' 로는 조회가 안되고, 'ls-al'로 조회할 수 있다.
+## . 으로 시작하는 파일
+- . 으로 이름이 시작하는 파일이나 디렉터리는 "숨겨진 파일" or "숨겨진 디렉터리" 이다.
+- 숨겨진 것들은 그냥 `ls` 로는 조회가 안되고, `ls -al` 로 조회할 수 있다.
+
 
 ## PEP?
 - Python Enhancement Proposal
 - PEP 는 규칙이 아니라 "제안"
-- 진짜로 cpython을 개발하는 파이썬 커미터들 포함, 파이썬 커뮤니티에서
-    "어떻게 앞으로 개선할 것인가"를 놓고 서로 제안하고, 승인하기도 하고, Decline 하기도 함
-- 승인된 PEP는 실제로 구현이 되서, 다음 파이썬 버전에 포함된다.
-- e.g.) PEP 255는 "제너레이터"입니다. ㅔ데 255에 의해서 제너레이터가 도입되었습니다.
-- 공식문서(python officail document, PEP, django documentation)를 가까이 하도록
-
-##
-hi = 'abc'
-hi2 = "abc"
-둘다 str
+- 진짜로 cpython 을 개발하는 파이썬 커미터들 포함, 파이썬 커뮤니티에서
+    "어떻게 앞으로 개선할 것인가" 를 놓고 서로 제안하고, 승인하기도 하고, decline 하기도 합니다.
+- 승인된 PEP 는 실제로 구현이 되서, 다음 파이썬 버전에 포함됩니다.
+- e.g.) PEP 255 는 "제너레이터" 입니다. pep 255 에 의해서 제너레이터가 도입되었습니다.
+- 공식문서 (python official document, PEP, django documentation) 를 가까이 하도록 합시다.
 
 ## Black
 - code formatter, 코드 스타일을 맞춰준다.
 
-## git commit 하기 전에 (중요)
-- 자기가 뭘 커밋하는지 꼭, 커밋전에 한번 더 확인하기
-- 지우지 않은 print() 가 있는지 확인
-    - print는 IO를 수반하기 때문에, (터미널에 출력해야 되기 때문) 비싼 연산
-    - 의도하지 않은 print가 남아있지 않도록합시다.
 
-## poetry 종속성 관리
-- pooetry add를 실행할 때 '-b' 옵션을 주면, 종속성을 dev dependency 로 추가합니다.
+## git commit 하기 전에 (중요)
+- 자기가 뭘 커밋하는지 꼭, 커밋전에 한 번 더 확인하기
+- 지우지 않은 print() 가 있는지 확인하세요~
+    - print 는 IO 를 수반하기 때문에, (터미널에 출력해야되기 때문) 비싼 연산입니다.
+    - 의도하지 않은 print 가 남아있지 않도록 합시다!
+
+## git 과 pycharm project panel
+- 흰색 파일: 수정되지 않은 파일
+- 파란색 파일: 한 번이라도 commit 된 적이 있고, 현재 커밋되지 않은 변경사항이 있는 파일
+- 초록색: git add 가 된 새로운 파일
+- 빨간색: add 되지 않은 새로운 파일 (즉, git 에 추적이 안 되고 있음)
+
+
+## pycharm git diff view 보는 방법
+- 왼쪽이 과거 상태, 오른쪽이 현재 상태 (your version 이라고 표기가 되어 있습니다.)\
+- 커맨드 + 화살표 아래 를 하면, diff view 에서 edit view 로 전환합니다.
+
+
+## poetry 의 종속성 관리
+- poetry add 를 실행할 때 `-D` 옵션을 주면, 종속성을 dev dependency 로 추가합니다.
+- black 은 "실제 실행에는 필요가 없습니다." 오로지 "개발할떄만 필요합니다."
+- 운영환경에서 실행할때에는 설치할 필요가 없고 오직 개발할 때에만 필요한 종속성을 dev dependency 에 추가합니다.
 
 - caret(^) requirements
+    - 하위 호환을 깨지 않는 범위에서, 가장 최신 버전을 사용하겠다. 라는 의미가 됩니다.
+    - major 가 오르지 않는 범위 내에서
 
-
-##  poetry.lock 파일
+## kpoetry.loc 파일
 - "정확히 어떤 버전을 설치해야 할지" 버전 정보가 lock 파일에 담겨있습니다.
-- 프로젝트 처음 클론받고, 'poetry'
+- 프로젝트를 처음 클론받고 `poetry install --no-root` 를 할 때, 디폴트 동작은 lock 파일을 보고 설치합니다.
+- lock 파일을 커밋해야합니다!!!!
+
 
 ## lock 파일의 content hash
-- hash 를 쉽게 설명하면 -> 임의의 문자열을
+- hash 를 쉽게 설명하면 -> 임의의 문자열을 입력으로 받아서 정해진 길이의 문자열을 반환하는 함수
+    - 해쉬의 특징은 "결정적"이다. 입력 문자열이 똑같다면, 결과도 항상 똑같습니다. (랜덤성이 없다.)
+    - 해쉬의 용도는 다양 (git commit 의 id 를 만드는 데에도 쓰이고, 비밀번호 암호화에도 쓰인다.)
+    - lock 파일의 hash 는 "lock 파일이 변했느냐 변하지 않았느냐" 를 빠르게 판단하기 위해서 쓰입니다.
+    - 과거에 저장해둔 hash 와 현재 lock 파일의 hash 가 다르다면 -> `poetry install`
+
+
+## 하위 호환성
+```python
+## 라이브러리 코드
+# 함수에도 타입이 있다.
+def my_func() -> None:
+    print()
+
+
+## 클라이언트 코드 (사용자쪽 코드)
+my_func(3)
+
+
+# 하위호환을 깨는 변경 -> 업데이트를 했을때, 클라이언트에서 에러가 나는 경우
+#    -> 업데이트했을 때 클라이언트도 적절히 수정해 주어야만 함.
+# e.g.)
+# 리턴하는 객체에서 멤버를 제외하는 경우
+# 디폴트가 없는 인자를 추가하는 경우
+# 기존에 받는 인자를 삭제하는 경우
+
+# 하위호환을 지키는 변경 -> 업데이트를 해도 클라이언트 측에서는 수정할 필요가 없다.
+# - 리턴하는 객체에 멤버를 추가하는 경우 (타입 자체는 안 바뀜)
+# - 디폴트 값이 있는 입력을 추가하는 경우
+
+```
 
 ## Mypy
-- 다른걸 다 안써도 mypy 하나만큼은 써야 하고 젤 중요
-- 그만큼 mypy를 지키는게 제일 어렵고, 장애를 에방하는 데 효과가 좋음
+- 다른걸 다 안써도 mypy 하나만큼은 써야 합니다! 제일 중요합니다.
+- 그마만큼 mypy 를 지키는게 제일 어렵습니다. 하지만 제일 효과가 좋습니다. 장애를 예방하는 데 효과가 좋습니다.
 
-## 미션 크리티컬 ? -> 장애나면 진짜 큰일나는 경우
+- 미션 크리티컬? -> 장애나면 진짜 큰일나는 경우
 
+
+
+## holleywood 패턴
+```python
+
+# 부모가 자식을 호출?
+# 부모의 method 가 자식이 override 한 메소드를 호출합니다.
+
+# holleywood 패턴
+# 높은 사람 (회사, 영화 제작자 측이) -> 낮은 사람 (배우)
+# 전체의 흐름을 부모가 완벽하게 제어한다는 보장이 됩니다.
+# 구현 세부사항 (상대적으로 작은 private method)
+# 예측 가능성이 높아진다!
+
+class Parent:
+
+    def _my_inner_func(self):
+        """
+        비어있는 private method
+        """
+        pass
+
+    def my_func(self):
+        """
+        부모의 public method 가 비어있는 자신의 private method 를 호출한다.
+        """
+        print("부모 public 호출")
+        result = self._my_inner_func()
+
+
+class Child(Parent):
+
+    def _my_inner_func(self):
+        print("inner func 를 자식이 구현했어")
+
+
+# 실행하면 뭐가 출력이 되나요?
+Child().my_func()
+
+```
+
+## mypy 의 타입 추론.
+- 변수 할당시에, 할당 연산자 오른쪽을 보고 mypy 는 타입을 추론합니다.
+```python
+
+def my_func() -> int:
+    return 3
+
+result = my_func()  # 이 경우, 함수의 리턴 타입이 int 기 때문에, 변수 result 의 타입은 int 일 것으로 유추할 수 있다.
+
+```
+
+
+## mypy strict
+- strict 옵션이 켜졌을 때, collection 의 경우에, collection 내부에 어떤 타입이 들어가는지도 함께 명시해주어야 한다.
+
+
+
+## type annotation 과 collection
+```python
+my_list: list[int | str] = [1, "1"]
+
+my_dict: dict[str, int] = {"a": 1}
+
+my_tuple: tuple[int, ...] = (
+    1,
+    3,
+)
+
+## Continuous Integration
+
+## 파일의 실행 권한
+- 파일을 만들면 기본적으로 "실행할 수 있는 권한"이 없는 상태에서 생성됩니다.
+- 어떻게 하면 파일을 실행할 수 있게 하나?
+    - chmod +x <파일이름>
