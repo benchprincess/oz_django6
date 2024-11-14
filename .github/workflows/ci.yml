@@ -3,6 +3,7 @@ name: Django CI
 on:
   push:
 
+
 jobs:
   ci:
     runs-on: ubuntu-20.04    # ubuntu 20 docker image을 사용한다고 생각하면 됨
