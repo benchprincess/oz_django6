@@ -28,4 +28,3 @@ class TestLikeService(TestCase):
         like1 = do_like(user.id, article.id)
         with self.assertRaises(IntegrityError):
             do_like(user.id, article.id)
-
